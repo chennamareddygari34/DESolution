@@ -5,5 +5,6 @@ namespace DEApp.Services
     public interface IApplicantService
     {
         List<ApplicationGridDTO> GetApplicantsByVendorId(int vendorId);
+        List<ApplicationGridDTO> GetAllApplicants();
     }
 }

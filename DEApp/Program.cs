@@ -2,6 +2,8 @@
 
 using BankLoanManagement.Services;
 using DealerPortalApp.Interfaces;
+using DEApp.Configuration;
+using DEApp.Configurations;
 using DEApp.Data;
 using DEApp.Interfaces;
 using DEApp.Models;
@@ -18,17 +20,15 @@ namespace DEApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddDbContext<DeappContext>(options =>
-               options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+            
 
-           
 
-            builder.Services.AddScoped<IApplicantService, ApplicantService>();
-            builder.Services.AddScoped<IApplicantRepository, ApplicantRepository>();
-            builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddScoped<IUserRepository<string, User>, UserRepository>();
-            builder.Services.AddScoped<ITokenService, TokenService>();
+
+            // Configure database context
+            builder.Services.AddDatabaseConfiguration(builder.Configuration);
+
+            // Configure application services
+            builder.Services.AddApplicationServices();
 
 
             builder.Services.AddControllers();

@@ -56,5 +56,12 @@ namespace DEApp.Repositories
                 .ToList();
         }
 
+        public List<Applicant> GetAllApplicants()
+        {
+            return _context.Applicants
+                .Include(a => a.Vendor)
+                .Include(a => a.Loans)   
+                .ToList();
+        }
     }
 }

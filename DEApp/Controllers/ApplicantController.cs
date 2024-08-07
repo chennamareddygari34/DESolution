@@ -27,5 +27,15 @@ namespace DEApp.Controllers
 
             return Ok(applicants);
         }
+        [HttpGet("GetAll")]
+        public ActionResult<List<ApplicationGridDTO>> GetAllApplicants()
+        {
+            var applicants = _applicantService.GetAllApplicants();
+            if (applicants == null || applicants.Count == 0)
+            {
+                return NoContent(); 
+            }
+            return Ok(applicants); 
+        }
     }
 }
