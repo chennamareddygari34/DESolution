@@ -38,12 +38,22 @@ public partial class DeappContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("Applicant");
+            entity.Property(e => e.City).HasMaxLength(100);
+            entity.Property(e => e.Country).HasMaxLength(100);
+            entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
+            entity.Property(e => e.District).HasMaxLength(100);
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+            entity.Property(e => e.Gender).HasMaxLength(50);
+            entity.Property(e => e.HouseNo).HasMaxLength(50);
+            entity.Property(e => e.Landmark).HasMaxLength(100);
+            entity.Property(e => e.MaritalStatus).HasMaxLength(50);
+            entity.Property(e => e.OccupationType).HasMaxLength(50);
             entity.Property(e => e.Phone)
                 .HasMaxLength(15)
                 .IsUnicode(false);
+            entity.Property(e => e.State).HasMaxLength(100);
             entity.Property(e => e.VendorId).HasColumnName("VendorID");
 
             entity.HasOne(d => d.Vendor).WithMany(p => p.Applicants)
@@ -59,8 +69,13 @@ public partial class DeappContext : DbContext
             entity.Property(e => e.LoanId).HasColumnName("LoanID");
             entity.Property(e => e.ApplicantDate).HasColumnType("datetime");
             entity.Property(e => e.ApplicantId).HasColumnName("ApplicantID");
+            entity.Property(e => e.InterestRate).HasColumnType("decimal(5, 2)");
             entity.Property(e => e.LastUpdate).HasColumnType("datetime");
             entity.Property(e => e.LoanAmount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.LoanDescription).HasMaxLength(255);
+            entity.Property(e => e.LoanType).HasMaxLength(100);
+            entity.Property(e => e.MaxLoanAmount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.MonthlyPayment).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .IsUnicode(false);

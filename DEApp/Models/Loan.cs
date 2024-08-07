@@ -17,5 +17,17 @@ public partial class Loan
 
     public DateTime? LastUpdate { get; set; }
 
-    public virtual Applicant? Applicant { get; set; }
+    public string? LoanType { get; set; }
+
+    public string? LoanDescription { get; set; }
+
+    public decimal? MaxLoanAmount { get; set; }
+
+    public int? LoanTerm { get; set; }
+
+    public decimal? InterestRate { get; set; }
+
+    public decimal? MonthlyPayment { get; set; }
+
+    public virtual Applicant Applicant { get; set; } = null!;
 }
