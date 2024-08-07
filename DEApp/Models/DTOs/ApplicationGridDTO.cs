@@ -5,6 +5,7 @@
         public int ApplicantId { get; set; }
 
         public int VendorId { get; set; }
+        public string? VendorName { get; set; }
 
         public string Applicant1 { get; set; }
         public DateTime? ApplicantDate { get; set; }

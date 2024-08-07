@@ -14,22 +14,6 @@ namespace DEApp.Services
             _applicantRepository = applicantRepository;
         }
 
-        //public List<ApplicationGridDTO> GetApplicantsByVendorId(int vendorId)
-        //{
-        //    var applicants = _applicantRepository.GetApplicantsByVendorId(vendorId);
-        //    return applicants.Select(a => new ApplicationGridDTO
-        //    {
-        //        ApplicantId = a.ApplicantId,
-        //        VendorId = a.VendorId,
-        //        Applicant1 = a.Applicant1,
-        //        //ApplicantDate = a.ApplicantDate,
-        //        //Status = a.Status,
-        //        //LastUpdate = a.LastUpdate,
-        //        Year = a.Vendor.Year,
-        //        Model = a.Vendor.Model,
-        //        Make = a.Vendor.Make
-        //    }).ToList();
-        //}
 
         public List<ApplicationGridDTO> GetApplicantsByVendorId(int vendorId)
         {
@@ -38,6 +22,7 @@ namespace DEApp.Services
             {
                 ApplicantId = a.ApplicantId,
                 VendorId = a.VendorId,
+                VendorName = a.Vendor.VendorName,
                 Applicant1 = a.Applicant1,
                 Year = a.Vendor.Year,
                 Model = a.Vendor.Model,
