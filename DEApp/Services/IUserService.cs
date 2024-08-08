@@ -1,6 +1,6 @@
 ﻿using DEApp.Models.DTOs;
 
-namespace DEApp.Interfaces
+namespace DEApp.Services
 {
     public interface IUserService
     {

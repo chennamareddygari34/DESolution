@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DEApp.Repositories
 {
-    public interface IApplicantRepository : IUserRepository<Applicant>
+    public interface IApplicantRepository : IRepository<Applicant>
     {
         IEnumerable<Applicant> GetApplicantsByVendorId(int vendorId);
         List<Applicant> GetAllApplicants();

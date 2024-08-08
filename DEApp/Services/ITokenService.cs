@@ -1,4 +1,4 @@
-﻿namespace DEApp.Interfaces
+﻿namespace DEApp.Services
 {
     public interface ITokenService
     {

@@ -2,7 +2,7 @@
 
 namespace DEApp.Repositories
 {
-    public interface IUserRepository<T>
+    public interface IRepository<T>
     {
         T GetById(int id);
         IEnumerable<T> GetAll();

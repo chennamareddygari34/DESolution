@@ -1,7 +1,7 @@
 ﻿using DealerPortalApp.Interfaces;
-using DEApp.Interfaces;
 using DEApp.Models;
 using DEApp.Models.DTOs;
+using DEApp.Services;
 using DEApp.Utilities;
 using System.Security.Cryptography;
 using System.Text;

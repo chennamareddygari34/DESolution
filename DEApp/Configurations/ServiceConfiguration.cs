@@ -13,8 +13,15 @@ namespace DEApp.Configuration
         public static void AddApplicationServices(this IServiceCollection services)
         {
             // Register services and repositories
+
             services.AddScoped<IApplicantService, ApplicantService>();
             services.AddScoped<IApplicantRepository, ApplicantRepository>();
+            
+            //Vendor
+            services.AddScoped<IVendorService, VendorService>();
+            services.AddScoped<IVendorRepository<int, Vendor>, VendorRepository>();
+
+            //Users
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository<string, User>, UserRepository>();
             services.AddScoped<ITokenService, TokenService>();
