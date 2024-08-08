@@ -15,38 +15,43 @@ namespace DEApp.Repositories
             _context = context;
         }
 
-        public Applicant GetById(int id)
-        {
-            return _context.Applicants.Find(id);
-        }
 
-        public IEnumerable<Applicant> GetAll()
+        public Applicant Add(Applicant item)
         {
-            return _context.Applicants.Include(a => a.Vendor).ToList();
-        }
-
-        public void Add(Applicant entity)
-        {
-            _context.Applicants.Add(entity);
+            _context.Applicants.Add(item);
             _context.SaveChanges();
+            return item;
         }
 
-        public void Update(Applicant entity)
+        public Applicant Delete(int key)
         {
-            _context.Applicants.Update(entity);
-            _context.SaveChanges();
-        }
-
-        public void Delete(int id)
-        {
-            var applicant = _context.Applicants.Find(id);
-            if (applicant != null)
+            var Applicant = Get(key);
+            if (Applicant != null)
             {
-                _context.Applicants.Remove(applicant);
+                _context.Applicants.Remove(Applicant);
                 _context.SaveChanges();
+                return Applicant;
             }
+            return null;
         }
 
+        public Applicant Get(int key)
+        {
+            var Applicants = _context.Applicants.FirstOrDefault(app => app.ApplicantId == key);
+            return Applicants;
+        }
+
+        public List<Applicant> GetAll()
+        {
+            return _context.Applicants.ToList();
+        }
+
+        public Applicant Update(Applicant item)
+        {
+            _context.Entry<Applicant>(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+            return item;
+        }
         public IEnumerable<Applicant> GetApplicantsByVendorId(int vendorId)
         {
             return _context.Applicants

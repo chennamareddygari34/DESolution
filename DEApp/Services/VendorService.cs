@@ -30,13 +30,13 @@ namespace DEApp.Services
             _vendorRepository.Add(vendor);
             return new VendorDTO
             {
-                VendorId = vendorDTO.VendorId,
-                VendorName = vendorDTO.VendorName,
-                Address = vendorDTO.Address,
-                Phone = vendorDTO.Phone,
-                Year = vendorDTO.Year,
-                Model = vendorDTO.Model,
-                Make = vendorDTO.Make
+                VendorId = vendor.VendorId,
+                VendorName = vendor.VendorName,
+                Address = vendor.Address,
+                Phone = vendor.Phone,
+                Year = vendor.Year,
+                Model = vendor.Model,
+                Make = vendor.Make
             };
         }
 

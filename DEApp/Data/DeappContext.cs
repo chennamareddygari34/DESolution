@@ -31,7 +31,7 @@ public partial class DeappContext : DbContext
     {
         modelBuilder.Entity<Applicant>(entity =>
         {
-            entity.HasKey(e => e.ApplicantId).HasName("PK__Applican__39AE914867FA508E");
+            entity.HasKey(e => e.ApplicantId).HasName("PK__Applican__39AE91482016C8B2");
 
             entity.Property(e => e.ApplicantId).HasColumnName("ApplicantID");
             entity.Property(e => e.Applicant1)
@@ -58,13 +58,12 @@ public partial class DeappContext : DbContext
 
             entity.HasOne(d => d.Vendor).WithMany(p => p.Applicants)
                 .HasForeignKey(d => d.VendorId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Applicant__Phone__534D60F1");
+                .HasConstraintName("FK__Applicant__Vendo__4D94879B");
         });
 
         modelBuilder.Entity<Loan>(entity =>
         {
-            entity.HasKey(e => e.LoanId).HasName("PK__Loans__4F5AD4374F01CB38");
+            entity.HasKey(e => e.LoanId).HasName("PK__Loans__4F5AD4373ACA0760");
 
             entity.Property(e => e.LoanId).HasColumnName("LoanID");
             entity.Property(e => e.ApplicantDate).HasColumnType("datetime");
@@ -82,13 +81,12 @@ public partial class DeappContext : DbContext
 
             entity.HasOne(d => d.Applicant).WithMany(p => p.Loans)
                 .HasForeignKey(d => d.ApplicantId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Loans__Applicant__5629CD9C");
+                .HasConstraintName("FK__Loans__Applicant__5070F446");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4CE060BE32");
+            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4CE686C699");
 
             entity.ToTable("User");
 
@@ -97,7 +95,7 @@ public partial class DeappContext : DbContext
 
         modelBuilder.Entity<Vendor>(entity =>
         {
-            entity.HasKey(e => e.VendorId).HasName("PK__Vendors__FC8618D3057C829C");
+            entity.HasKey(e => e.VendorId).HasName("PK__Vendors__FC8618D3DB4DC832");
 
             entity.Property(e => e.VendorId).HasColumnName("VendorID");
             entity.Property(e => e.Address)

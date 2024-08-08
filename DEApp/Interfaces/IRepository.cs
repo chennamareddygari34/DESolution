@@ -2,12 +2,12 @@
 
 namespace DEApp.Repositories
 {
-    public interface IRepository<T>
+    public interface IRepository<K, T> where T : class
     {
-        T GetById(int id);
-        IEnumerable<T> GetAll();
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(int id);
+        public List<T> GetAll();
+        public T Get(K key);
+        public T Add(T item);
+        public T Delete(K key);
+        public T Update(T item);
     }
 }

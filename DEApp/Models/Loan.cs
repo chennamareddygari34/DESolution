@@ -7,7 +7,7 @@ public partial class Loan
 {
     public int LoanId { get; set; }
 
-    public int ApplicantId { get; set; }
+    public int? ApplicantId { get; set; }
 
     public decimal? LoanAmount { get; set; }
 
@@ -29,5 +29,5 @@ public partial class Loan
 
     public decimal? MonthlyPayment { get; set; }
 
-    public virtual Applicant Applicant { get; set; } = null!;
+    public virtual Applicant? Applicant { get; set; }
 }

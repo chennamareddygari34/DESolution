@@ -7,9 +7,9 @@ public partial class Applicant
 {
     public int ApplicantId { get; set; }
 
-    public int VendorId { get; set; }
+    public int? VendorId { get; set; }
 
-    public string Applicant1 { get; set; } = null!;
+    public string? Applicant1 { get; set; }
 
     public string? Email { get; set; }
 
@@ -39,5 +39,5 @@ public partial class Applicant
 
     public virtual ICollection<Loan> Loans { get; set; } = new List<Loan>();
 
-    public virtual Vendor Vendor { get; set; } = null!;
+    public virtual Vendor? Vendor { get; set; }
 }
