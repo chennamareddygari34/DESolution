@@ -101,6 +101,20 @@ namespace DEApp.Controllers
             var applicants = _applicantService.GetAllApplicantByCreatedPersonData();
             return Ok(applicants);
         }
+        [HttpPut("UpdateApplication/{applicantId}/{vendorId}")]
+        public IActionResult UpdateApplicationByUsingVendorId(int applicantId, int vendorId)
+        {
+            try
+            {
+                var updatedApplication = _applicantService.UpdateApplicationByUsingVendorId(applicantId, vendorId);
+                return Ok(updatedApplication);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+        }
+
     }
 
 }

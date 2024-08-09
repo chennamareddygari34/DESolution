@@ -6,6 +6,7 @@ namespace DEApp.Services
     {
         List<ApplicationGridDTO> GetApplicantsByVendorId(int vendorId);
         List<ApplicationGridDTO> GetAllApplicants();
+        public ApplicantDTO UpdateApplicationByUsingVendorId(int applicantId, int vendorId);
         public List<ApplicantDTO> GetAllApplicantByCreatedPersonData();
         public ApplicantDTO GetApplicantById(int ApplicantId);
         public ApplicantDTO AddApplicant(ApplicantDTO applicantDTO);

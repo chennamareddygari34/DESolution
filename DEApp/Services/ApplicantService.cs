@@ -236,5 +236,45 @@ namespace DEApp.Services
 
             return applicants;
         }
+
+
+
+
+        public ApplicantDTO UpdateApplicationByUsingVendorId(int applicantId, int vendorId)
+        {
+            var applicant = _applicantRepository.Get(applicantId);
+
+            if (applicant == null)
+            {
+                throw new Exception("Applicant not found");
+            }
+
+            applicant.VendorId = vendorId; 
+
+            _applicantRepository.Update(applicant);
+
+            var applicationDTO = new ApplicantDTO
+            {
+                ApplicantId = applicant.ApplicantId,
+                VendorId = vendorId, 
+                Applicant1 = applicant.Applicant1,
+                Email = applicant.Email,
+                Phone = applicant.Phone,
+                DateOfBirth = applicant.DateOfBirth,
+                Gender = applicant.Gender,
+                MaritalStatus = applicant.MaritalStatus,
+                OccupationType = applicant.OccupationType,
+                HouseNo = applicant.HouseNo,
+                City = applicant.City,
+                District = applicant.District,
+                State = applicant.State,
+                Landmark = applicant.Landmark,
+                Pincode = applicant.Pincode,
+                Country = applicant.Country
+            };
+
+            return applicationDTO;
+        }
+
     }
 }
