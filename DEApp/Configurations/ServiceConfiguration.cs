@@ -1,10 +1,7 @@
-﻿using BankLoanManagement.Services;
-using DealerPortalApp.Interfaces;
+﻿using DEApp.Services;
 using DEApp.Interfaces;
 using DEApp.Models;
 using DEApp.Repositories;
-using DEApp.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace DEApp.Configuration
 {
@@ -25,6 +22,10 @@ namespace DEApp.Configuration
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository<string, User>, UserRepository>();
             services.AddScoped<ITokenService, TokenService>();
+
+           services.AddScoped<ILoanService, LoanService>();
+        services.AddScoped<ILoanRepository<int, Loan>, LoanRepository>();
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DealerPortalApp.Interfaces;
+﻿using DEApp.Interfaces;
 using DEApp.Data;
 using DEApp.Models;
 using System;

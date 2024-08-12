@@ -4,7 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace BankLoanManagement.Services
+namespace DEApp.Services
 {
     public class TokenService : ITokenService
     {

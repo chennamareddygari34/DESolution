@@ -1,7 +1,7 @@
 
 
-using BankLoanManagement.Services;
-using DealerPortalApp.Interfaces;
+using DEApp.Services;
+using DEApp.Interfaces;
 using DEApp.Configuration;
 using DEApp.Configurations;
 using DEApp.Data;
