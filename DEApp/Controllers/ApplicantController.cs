@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DEApp.Models.DTOs;
+﻿using DEApp.Models.DTOs;
 using DEApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -115,6 +114,43 @@ namespace DEApp.Controllers
             }
         }
 
+        //[HttpGet("grid")]
+        //public ActionResult<IEnumerable<ApplicationGridDTO>> GetApplicantsByGridUsingIDandName([FromQuery] int applicantId, [FromQuery] string applicant1)
+        //{
+        //    var applicants = _applicantService.GetApplicantsByGridUsingIDandName(applicantId, applicant1);
+
+        //    if (applicants == null || !applicants.Any())
+        //    {
+        //        return NotFound(); 
+        //    }
+
+        //    return Ok(applicants); 
+        //}
+        [HttpGet("search")]
+        public ActionResult<List<ApplicationGridDTO>> GetApplicantsByGridUsingIDandName([FromQuery] string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return BadRequest("Search term cannot be empty.");
+            }
+
+            int applicantId;
+            bool isNumeric = int.TryParse(searchTerm, out applicantId);
+
+            var result = _applicantService.GetApplicantsByGridUsingIDandName(isNumeric ? applicantId : 0, !isNumeric ? searchTerm : null).ToList(); 
+
+            if (result == null || !result.Any()) 
+            {
+                return NotFound("No applicants found.");
+            }
+
+            return Ok(result);
+        }
+
     }
 
+
 }
+
+
+

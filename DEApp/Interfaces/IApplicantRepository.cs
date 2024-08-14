@@ -7,5 +7,6 @@ namespace DEApp.Repositories
     {
         IEnumerable<Applicant> GetApplicantsByVendorId(int vendorId);
         List<Applicant> GetAllApplicants();
+        public IEnumerable<Applicant> GetApplicantsByGridUsingIDandName(int applicantId, string applicant1);
     }
 }

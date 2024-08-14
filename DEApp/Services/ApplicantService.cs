@@ -5,6 +5,7 @@ using System.Reflection;
 using DEApp.Models;
 using DEApp.Models.DTOs;
 using DEApp.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace DEApp.Services
 {
@@ -275,6 +276,31 @@ namespace DEApp.Services
 
             return applicationDTO;
         }
+        public IEnumerable<ApplicationGridDTO> GetApplicantsByGridUsingIDandName(int applicantId, string applicant1)
+        {
+            var applicants = _applicantRepository.GetApplicantsByGridUsingIDandName(applicantId, applicant1);
 
+            return applicants.Select(a => new ApplicationGridDTO
+            {
+                ApplicantId = a.ApplicantId, 
+                VendorId = a.Vendor?.VendorId,
+                VendorName = a.Vendor?.VendorName,
+                Applicant1 = a.Applicant1,
+                ApplicantDate = a.Loans.FirstOrDefault()?.ApplicantDate,
+                Status = a.Loans.FirstOrDefault()?.Status,
+                LastUpdate = a.Loans.FirstOrDefault()?.LastUpdate,
+                Year = a.Vendor?.Year,
+                Model = a.Vendor?.Model,
+                Make = a.Vendor?.Make
+            }).ToList();
+        }
+
+
+
+
+        public ApplicationGridDTO GetApplicationByGridUsingStatus(string Status)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

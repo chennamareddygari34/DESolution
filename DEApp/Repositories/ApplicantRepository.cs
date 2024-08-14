@@ -2,6 +2,7 @@
 using System.Linq;
 using DEApp.Data;
 using DEApp.Models;
+using DEApp.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace DEApp.Repositories
@@ -66,6 +67,14 @@ namespace DEApp.Repositories
             return _context.Applicants
                 .Include(a => a.Vendor)
                 .Include(a => a.Loans)   
+                .ToList();
+        }
+        public IEnumerable<Applicant> GetApplicantsByGridUsingIDandName(int applicantId, string applicant1)
+        {
+            return _context.Applicants
+                .Where(a => a.ApplicantId == applicantId || a.Applicant1 == applicant1)
+                .Include(a => a.Vendor)
+                .Include(a => a.Loans)
                 .ToList();
         }
     }
