@@ -77,5 +77,24 @@ namespace DEApp.Repositories
                 .Include(a => a.Loans)
                 .ToList();
         }
+
+        public IEnumerable<Applicant> GetApplicantsByStatus(string status)
+        {
+            return _context.Applicants
+                .Include(a => a.Vendor)
+                .Include(a => a.Loans)
+                .Where(a => a.Loans.Any(l => l.Status == status))
+                .ToList();
+        }
+
+        public IEnumerable<Applicant> GetApplicantsByDate(DateTime applicantDate)
+        {
+            return _context.Applicants
+                .Include(a => a.Vendor)
+                .Include(a => a.Loans)
+                .Where(a => a.Loans.Any(l => l.ApplicantDate.HasValue && l.ApplicantDate.Value.Date == applicantDate.Date))
+                .ToList();
+        }
+
     }
 }

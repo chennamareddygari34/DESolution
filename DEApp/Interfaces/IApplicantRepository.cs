@@ -1,4 +1,5 @@
 ﻿using DEApp.Models;
+using DEApp.Models.DTOs;
 using System.Collections.Generic;
 
 namespace DEApp.Repositories
@@ -8,5 +9,7 @@ namespace DEApp.Repositories
         IEnumerable<Applicant> GetApplicantsByVendorId(int vendorId);
         List<Applicant> GetAllApplicants();
         public IEnumerable<Applicant> GetApplicantsByGridUsingIDandName(int applicantId, string applicant1);
+        IEnumerable<Applicant> GetApplicantsByStatus(string status);
+        IEnumerable<Applicant> GetApplicantsByDate(DateTime applicantDate);
     }
 }

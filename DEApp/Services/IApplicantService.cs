@@ -13,7 +13,7 @@ namespace DEApp.Services
         public ApplicantDTO UpdateApplicant(ApplicantDTO applicantDTO);
         public ApplicantDTO DeleteApplicantById(int ApplicantId);
         public IEnumerable<ApplicationGridDTO> GetApplicantsByGridUsingIDandName(int applicantId, string applicant1);
-        public ApplicationGridDTO GetApplicationByGridUsingStatus(string Status);
-
+        List<ApplicationGridDTO> GetApplicationByGridUsingStatus(string status);
+        List<ApplicationGridDTO> GetApplicationByGridUsingDate(DateTime applicantDate);
     }
 }

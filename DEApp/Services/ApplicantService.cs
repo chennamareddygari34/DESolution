@@ -295,12 +295,45 @@ namespace DEApp.Services
             }).ToList();
         }
 
-
-
-
-        public ApplicationGridDTO GetApplicationByGridUsingStatus(string Status)
+        public List<ApplicationGridDTO> GetApplicationByGridUsingStatus(string status)
         {
-            throw new NotImplementedException();
+            var applicants = _applicantRepository.GetApplicantsByStatus(status);
+
+            return applicants.Select(a => new ApplicationGridDTO
+            {
+                ApplicantId = a.ApplicantId,
+                VendorId = a.VendorId,
+                VendorName = a.Vendor.VendorName,
+                Applicant1 = a.Applicant1,
+                Year = a.Vendor.Year,
+                Model = a.Vendor.Model,
+                Make = a.Vendor.Make,
+                ApplicantDate = a.Loans.FirstOrDefault(l => l.Status == status)?.ApplicantDate,
+                Status = a.Loans.FirstOrDefault(l => l.Status == status)?.Status,
+                LastUpdate = a.Loans.FirstOrDefault(l => l.Status == status)?.LastUpdate
+            }).ToList();
         }
+
+        public List<ApplicationGridDTO> GetApplicationByGridUsingDate(DateTime applicantDate)
+        {
+            var applicants = _applicantRepository.GetApplicantsByDate(applicantDate);
+
+            return applicants.Select(a => new ApplicationGridDTO
+            {
+                ApplicantId = a.ApplicantId,
+                VendorId = a.VendorId,
+                VendorName = a.Vendor.VendorName,
+                Applicant1 = a.Applicant1,
+                Year = a.Vendor.Year,
+                Model = a.Vendor.Model,
+                Make = a.Vendor.Make,
+                ApplicantDate = a.Loans.FirstOrDefault(l => l.ApplicantDate.HasValue && l.ApplicantDate.Value.Date == applicantDate.Date)?.ApplicantDate,
+                Status = a.Loans.FirstOrDefault(l => l.ApplicantDate.HasValue && l.ApplicantDate.Value.Date == applicantDate.Date)?.Status,
+                LastUpdate = a.Loans.FirstOrDefault(l => l.ApplicantDate.HasValue && l.ApplicantDate.Value.Date == applicantDate.Date)?.LastUpdate
+            }).ToList();
+        }
+
+
+
     }
 }

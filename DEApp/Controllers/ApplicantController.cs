@@ -114,18 +114,7 @@ namespace DEApp.Controllers
             }
         }
 
-        //[HttpGet("grid")]
-        //public ActionResult<IEnumerable<ApplicationGridDTO>> GetApplicantsByGridUsingIDandName([FromQuery] int applicantId, [FromQuery] string applicant1)
-        //{
-        //    var applicants = _applicantService.GetApplicantsByGridUsingIDandName(applicantId, applicant1);
-
-        //    if (applicants == null || !applicants.Any())
-        //    {
-        //        return NotFound(); 
-        //    }
-
-        //    return Ok(applicants); 
-        //}
+  
         [HttpGet("search")]
         public ActionResult<List<ApplicationGridDTO>> GetApplicantsByGridUsingIDandName([FromQuery] string searchTerm)
         {
@@ -145,6 +134,37 @@ namespace DEApp.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpGet("status")]
+        public ActionResult<List<ApplicationGridDTO>> GetApplicationByGridUsingStatus([FromQuery] string status)
+        {
+            if (string.IsNullOrWhiteSpace(status))
+            {
+                return BadRequest("Status cannot be empty.");
+            }
+
+            var applications = _applicantService.GetApplicationByGridUsingStatus(status);
+
+            if (applications == null || applications.Count == 0)
+            {
+                return NotFound("No application found with the specified status.");
+            }
+
+            return Ok(applications);
+        }
+
+        [HttpGet("date")]
+        public ActionResult<List<ApplicationGridDTO>> GetApplicationByGridUsingDate([FromQuery] DateTime applicantDate)
+        {
+            var applications = _applicantService.GetApplicationByGridUsingDate(applicantDate);
+
+            if (applications == null || applications.Count == 0)
+            {
+                return NotFound("No application found for the specified date.");
+            }
+
+            return Ok(applications);
         }
 
     }
