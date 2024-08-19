@@ -23,8 +23,16 @@ namespace DEApp.Configuration
             services.AddScoped<IUserRepository<string, User>, UserRepository>();
             services.AddScoped<ITokenService, TokenService>();
 
-           services.AddScoped<ILoanService, LoanService>();
-        services.AddScoped<ILoanRepository<int, Loan>, LoanRepository>();
+            //Loans
+            services.AddScoped<ILoanService, LoanService>();
+            services.AddScoped<ILoanRepository<int, Loan>, LoanRepository>();
+
+            //ProfileSettings
+            services.AddScoped<IProfilesettingService, ProfilesettingService>();
+            services.AddScoped<IProfilesettingRepository<int, ProfileSetting>, ProfilesettingRepository>();
+
+
+
 
         }
     }

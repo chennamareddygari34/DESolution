@@ -20,6 +20,8 @@ public partial class DeappContext : DbContext
 
     public virtual DbSet<Loan> Loans { get; set; }
 
+    public virtual DbSet<ProfileSetting> ProfileSettings { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Vendor> Vendors { get; set; }
@@ -31,7 +33,7 @@ public partial class DeappContext : DbContext
     {
         modelBuilder.Entity<Applicant>(entity =>
         {
-            entity.HasKey(e => e.ApplicantId).HasName("PK__Applican__39AE91482016C8B2");
+            entity.HasKey(e => e.ApplicantId).HasName("PK__Applican__39AE9148702794EA");
 
             entity.Property(e => e.ApplicantId).HasColumnName("ApplicantID");
             entity.Property(e => e.Applicant1)
@@ -58,12 +60,12 @@ public partial class DeappContext : DbContext
 
             entity.HasOne(d => d.Vendor).WithMany(p => p.Applicants)
                 .HasForeignKey(d => d.VendorId)
-                .HasConstraintName("FK__Applicant__Vendo__4D94879B");
+                .HasConstraintName("FK__Applicant__Vendo__4BAC3F29");
         });
 
         modelBuilder.Entity<Loan>(entity =>
         {
-            entity.HasKey(e => e.LoanId).HasName("PK__Loans__4F5AD4373ACA0760");
+            entity.HasKey(e => e.LoanId).HasName("PK__Loans__4F5AD43754EB1AB4");
 
             entity.Property(e => e.LoanId).HasColumnName("LoanID");
             entity.Property(e => e.ApplicantDate).HasColumnType("datetime");
@@ -81,12 +83,30 @@ public partial class DeappContext : DbContext
 
             entity.HasOne(d => d.Applicant).WithMany(p => p.Loans)
                 .HasForeignKey(d => d.ApplicantId)
-                .HasConstraintName("FK__Loans__Applicant__5070F446");
+                .HasConstraintName("FK__Loans__Applicant__4E88ABD4");
+        });
+
+        modelBuilder.Entity<ProfileSetting>(entity =>
+        {
+            entity.HasKey(e => e.ProfileSettingId).HasName("PK__ProfileS__3388D9C08AA68E13");
+
+            entity.ToTable("ProfileSetting");
+
+            entity.HasIndex(e => e.Username, "UQ__ProfileS__536C85E4F895E4E4").IsUnique();
+
+            entity.HasIndex(e => e.Email, "UQ__ProfileS__A9D105347198F1D3").IsUnique();
+
+            entity.Property(e => e.Email).HasMaxLength(255);
+            entity.Property(e => e.FirstName).HasMaxLength(100);
+            entity.Property(e => e.LastName).HasMaxLength(100);
+            entity.Property(e => e.MobileNumber).HasMaxLength(15);
+            entity.Property(e => e.Role).HasMaxLength(50);
+            entity.Property(e => e.Username).HasMaxLength(100);
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4CE686C699");
+            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4C1D94B090");
 
             entity.ToTable("User");
 
@@ -95,7 +115,7 @@ public partial class DeappContext : DbContext
 
         modelBuilder.Entity<Vendor>(entity =>
         {
-            entity.HasKey(e => e.VendorId).HasName("PK__Vendors__FC8618D3DB4DC832");
+            entity.HasKey(e => e.VendorId).HasName("PK__Vendors__FC8618D3529A5137");
 
             entity.Property(e => e.VendorId).HasColumnName("VendorID");
             entity.Property(e => e.Address)

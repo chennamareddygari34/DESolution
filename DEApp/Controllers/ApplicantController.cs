@@ -15,29 +15,7 @@ namespace DEApp.Controllers
             _applicantService = applicantService;
         }
 
-        [HttpGet("vendor/{vendorId}")]
-        public ActionResult<List<ApplicationGridDTO>> GetApplicantsByVendorId(int vendorId)
-        {
-            var applicants = _applicantService.GetApplicantsByVendorId(vendorId);
-            if (applicants == null || applicants.Count == 0)
-            {
-                return NotFound();
-            }
 
-            return Ok(applicants);
-        }
-        [HttpGet("GetAll")]
-        public ActionResult<List<ApplicationGridDTO>> GetAllApplicants()
-        {
-            var applicants = _applicantService.GetAllApplicants();
-            if (applicants == null || applicants.Count == 0)
-            {
-                return NoContent();
-            }
-            return Ok(applicants);
-        }
-
-        //By using this code for all Applicant
 
 
         [HttpPost]
@@ -64,7 +42,7 @@ namespace DEApp.Controllers
             return Ok(applicantDTO);
         }
 
-       
+
         [HttpGet("{id}")]
         public ActionResult<ApplicantDTO> GetApplicantById(int id)
         {
@@ -100,6 +78,32 @@ namespace DEApp.Controllers
             var applicants = _applicantService.GetAllApplicantByCreatedPersonData();
             return Ok(applicants);
         }
+
+        [HttpGet("vendor/{vendorId}")]
+        public ActionResult<List<ApplicationGridDTO>> GetApplicantsByVendorId(int vendorId)
+        {
+            var applicants = _applicantService.GetApplicantsByVendorId(vendorId);
+            if (applicants == null || applicants.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(applicants);
+        }
+
+
+        [HttpGet("GetAll")]
+        public ActionResult<List<ApplicationGridDTO>> GetAllApplicants()
+        {
+            var applicants = _applicantService.GetAllApplicants();
+            if (applicants == null || applicants.Count == 0)
+            {
+                return NoContent();
+            }
+            return Ok(applicants);
+        }
+
+
         [HttpPut("UpdateApplication/{applicantId}/{vendorId}")]
         public IActionResult UpdateApplicationByUsingVendorId(int applicantId, int vendorId)
         {
@@ -114,7 +118,7 @@ namespace DEApp.Controllers
             }
         }
 
-  
+
         [HttpGet("search")]
         public ActionResult<List<ApplicationGridDTO>> GetApplicantsByGridUsingIDandName([FromQuery] string searchTerm)
         {
@@ -126,9 +130,9 @@ namespace DEApp.Controllers
             int applicantId;
             bool isNumeric = int.TryParse(searchTerm, out applicantId);
 
-            var result = _applicantService.GetApplicantsByGridUsingIDandName(isNumeric ? applicantId : 0, !isNumeric ? searchTerm : null).ToList(); 
+            var result = _applicantService.GetApplicantsByGridUsingIDandName(isNumeric ? applicantId : 0, !isNumeric ? searchTerm : null).ToList();
 
-            if (result == null || !result.Any()) 
+            if (result == null || !result.Any())
             {
                 return NotFound("No applicants found.");
             }
