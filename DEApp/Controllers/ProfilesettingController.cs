@@ -48,13 +48,13 @@ namespace DEApp.Controllers
             }
 
             var createdProfile = _profileSettingService.AddUserProfile(profileSettingDTO);
-            return CreatedAtAction(nameof(GetUserProfileById), new { id = createdProfile.ProfileSettingId }, createdProfile);
+            return CreatedAtAction(nameof(GetUserProfileById), new { id = createdProfile.UserId }, createdProfile);
         }
 
         [HttpPut("{id}")]
         public ActionResult<ProfileSettingDTO> UpdateUserProfile(int id, [FromBody] ProfileSettingDTO profileSettingDTO)
         {
-            if (id != profileSettingDTO.ProfileSettingId)
+            if (id != profileSettingDTO.UserId)
             {
                 return BadRequest("ProfileSetting ID mismatch");
             }

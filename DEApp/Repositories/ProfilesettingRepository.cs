@@ -36,7 +36,7 @@ namespace DEApp.Repositories
 
         public ProfileSetting Get(int key)
         {
-            var ProfileSetting = _context.ProfileSettings.FirstOrDefault(p => p.ProfileSettingId == key);
+            var ProfileSetting = _context.ProfileSettings.FirstOrDefault(p => p.UserId == key);
             return ProfileSetting;
         }
 
