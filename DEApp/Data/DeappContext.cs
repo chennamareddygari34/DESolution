@@ -22,8 +22,6 @@ public partial class DeappContext : DbContext
 
     public virtual DbSet<ProfileSetting> ProfileSettings { get; set; }
 
-    public virtual DbSet<Role> Roles { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<Vendor> Vendors { get; set; }
@@ -90,33 +88,20 @@ public partial class DeappContext : DbContext
 
         modelBuilder.Entity<ProfileSetting>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__ProfileS__1788CC4C78840EF7");
+            entity.HasKey(e => e.ProfileSettingId).HasName("PK__ProfileS__3388D9C08AA68E13");
 
             entity.ToTable("ProfileSetting");
 
-            entity.HasIndex(e => e.Username, "UQ__ProfileS__536C85E4C13892B3").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__ProfileS__536C85E4F895E4E4").IsUnique();
+
+            entity.HasIndex(e => e.Email, "UQ__ProfileS__A9D105347198F1D3").IsUnique();
 
             entity.Property(e => e.Email).HasMaxLength(255);
             entity.Property(e => e.FirstName).HasMaxLength(100);
             entity.Property(e => e.LastName).HasMaxLength(100);
             entity.Property(e => e.MobileNumber).HasMaxLength(15);
+            entity.Property(e => e.Role).HasMaxLength(50);
             entity.Property(e => e.Username).HasMaxLength(100);
-
-            entity.HasOne(d => d.Role).WithMany(p => p.ProfileSettings)
-                .HasForeignKey(d => d.RoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ProfileSe__RoleI__5BE2A6F2");
-        });
-
-        modelBuilder.Entity<Role>(entity =>
-        {
-            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE1AD0A7D4B3");
-
-            entity.ToTable("Role");
-
-            entity.HasIndex(e => e.RoleName, "UQ__Role__8A2B616036EA5CBD").IsUnique();
-
-            entity.Property(e => e.RoleName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -126,10 +111,6 @@ public partial class DeappContext : DbContext
             entity.ToTable("User");
 
             entity.Property(e => e.UserName).HasMaxLength(100);
-
-            entity.HasOne(d => d.Role).WithMany(p => p.Users)
-                .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK_User_Role");
         });
 
         modelBuilder.Entity<Vendor>(entity =>

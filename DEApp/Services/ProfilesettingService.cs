@@ -8,7 +8,7 @@ namespace DEApp.Services
     public class ProfilesettingService : IProfilesettingService
     {
         private readonly IProfilesettingRepository<int, ProfileSetting> _profilesettingRepository;
-        public ProfilesettingService(IProfilesettingRepository<int, ProfileSetting> profilesettingRepository)
+        public ProfilesettingService(IProfilesettingRepository<int, ProfileSetting> profilesettingRepository) 
         {
             _profilesettingRepository = profilesettingRepository;
         }
@@ -22,20 +22,20 @@ namespace DEApp.Services
                 LastName = profileSettingDTO.LastName,
                 Username = profileSettingDTO.Username,
                 MobileNumber = profileSettingDTO.MobileNumber,
-                RoleId = profileSettingDTO.RoleId 
+                Role = profileSettingDTO.Role
             };
 
             _profilesettingRepository.Add(profileSetting);
 
             return new ProfileSettingDTO
             {
-                UserId = profileSetting.UserId,
+                ProfileSettingId = profileSetting.ProfileSettingId,
                 Email = profileSetting.Email,
                 FirstName = profileSetting.FirstName,
                 LastName = profileSetting.LastName,
                 Username = profileSetting.Username,
                 MobileNumber = profileSetting.MobileNumber,
-                RoleId = profileSetting.RoleId 
+                Role = profileSetting.Role
             };
         }
 
@@ -51,28 +51,30 @@ namespace DEApp.Services
 
             return new ProfileSettingDTO
             {
-                UserId = profileSetting.UserId,
+                ProfileSettingId = profileSetting.ProfileSettingId,
                 Email = profileSetting.Email,
                 FirstName = profileSetting.FirstName,
                 LastName = profileSetting.LastName,
                 Username = profileSetting.Username,
                 MobileNumber = profileSetting.MobileNumber,
-                RoleId = profileSetting.RoleId 
+                Role = profileSetting.Role
             };
         }
+
+       
 
         public List<ProfileSettingDTO> GetAllUserProfiles()
         {
             var profileSettings = _profilesettingRepository.GetAll()
                 .Select(profileSetting => new ProfileSettingDTO
                 {
-                    UserId = profileSetting.UserId,
+                    ProfileSettingId = profileSetting.ProfileSettingId,
                     Email = profileSetting.Email,
                     FirstName = profileSetting.FirstName,
                     LastName = profileSetting.LastName,
                     Username = profileSetting.Username,
                     MobileNumber = profileSetting.MobileNumber,
-                    RoleId = profileSetting.RoleId 
+                    Role = profileSetting.Role
                 }).ToList();
 
             return profileSettings;
@@ -88,19 +90,19 @@ namespace DEApp.Services
 
             return new ProfileSettingDTO
             {
-                UserId = profileSetting.UserId,
+                ProfileSettingId = profileSetting.ProfileSettingId,
                 Email = profileSetting.Email,
                 FirstName = profileSetting.FirstName,
                 LastName = profileSetting.LastName,
                 Username = profileSetting.Username,
                 MobileNumber = profileSetting.MobileNumber,
-                RoleId = profileSetting.RoleId 
+                Role = profileSetting.Role
             };
         }
 
         public ProfileSettingDTO UpdateUserProfile(ProfileSettingDTO profileSettingDTO)
         {
-            var profileSetting = _profilesettingRepository.Get(profileSettingDTO.UserId);
+            var profileSetting = _profilesettingRepository.Get(profileSettingDTO.ProfileSettingId);
             if (profileSetting == null)
             {
                 return null;
@@ -111,20 +113,22 @@ namespace DEApp.Services
             profileSetting.LastName = profileSettingDTO.LastName;
             profileSetting.Username = profileSettingDTO.Username;
             profileSetting.MobileNumber = profileSettingDTO.MobileNumber;
-            profileSetting.RoleId = profileSettingDTO.RoleId; 
+            profileSetting.Role = profileSettingDTO.Role;
 
             _profilesettingRepository.Update(profileSetting);
 
             return new ProfileSettingDTO
             {
-                UserId = profileSetting.UserId,
+                ProfileSettingId = profileSetting.ProfileSettingId,
                 Email = profileSettingDTO.Email,
                 FirstName = profileSettingDTO.FirstName,
                 LastName = profileSettingDTO.LastName,
                 Username = profileSettingDTO.Username,
                 MobileNumber = profileSettingDTO.MobileNumber,
-                RoleId = profileSetting.RoleId 
+                Role = profileSettingDTO.Role
             };
         }
+
+       
     }
 }
