@@ -201,6 +201,7 @@
 
 //    }
 //}
+
 using DEApp.Interfaces;
 using DEApp.Models;
 using DEApp.Models.DTOs;
@@ -263,7 +264,7 @@ namespace DEApp.Services
                     LoanAmount = loan.LoanAmount,
                     LoanType = loan.LoanType,
                     LoanDescription = loan.LoanDescription,
-                    MaxLoanAmount = maxLoanAmount, 
+                    MaxLoanAmount = maxLoanAmount,
                     LoanTerm = loan.LoanTerm,
                     InterestRate = loan.InterestRate,
                     MonthlyPayment = loan.MonthlyPayment,
@@ -282,7 +283,7 @@ namespace DEApp.Services
             var loan = _loanRepository.Get(loanId);
             if (loan == null)
             {
-                return null; 
+                return null;
             }
 
             var maxLoanAmount = GetApplicantMaxLoanAmount(loan.ApplicantId);
@@ -294,7 +295,7 @@ namespace DEApp.Services
                 LoanAmount = loan.LoanAmount,
                 LoanType = loan.LoanType,
                 LoanDescription = loan.LoanDescription,
-                MaxLoanAmount = maxLoanAmount, 
+                MaxLoanAmount = maxLoanAmount,
                 LoanTerm = loan.LoanTerm,
                 InterestRate = loan.InterestRate,
                 MonthlyPayment = loan.MonthlyPayment,
